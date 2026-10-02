@@ -1,24 +1,26 @@
-# Sail One Language 
+# Sail Language 
 
 Completely new OOP language with new **classes** and style **elegance**
 
-Welcome to the description of the **Sail One programming language**. This manual will walk you through Sail One's unique syntax, program structure, and features, using enclosed examples
+Welcome to the description of the **Sail programming language**. This manual will walk you through Sail's unique syntax, program structure, and features, using enclosed examples
 
-**Sail One** is designed with a primary goal: to make **AI coding** easier, much like natural writing. This is achieved through a few core syntactical changes that streamline the AI development process. 
+**Sail** is designed with a primary goal: to make **AI coding** easier, much like natural writing. This is achieved through a few core syntactical changes that streamline the AI development process. 
 
 It has unifying rule that assignments, variable and function declarations and function calls, and input / output always flow from left to right
+
+[Sail Compiler](https://sailcompiler.replit.app)
 
 \---
 
 ## 1\. The Basics: Syntax \& Variables
 
-First, let's cover the fundamental building blocks of the Sail One language.
+First, let's cover the fundamental building blocks of the Sail language.
 
 ### Key Concepts
 
 **It's time to change syntax of programming languages**
 
-* **First: New Assignment Operator:** The most significant change is the assignment operator. Instead of `variable = value`, Sail One uses `value > variable`. This allows for a natural left-to-right flow mimicking handwriting, for example: `a + b > a`. 
+* **First: New Assignment Operator:** The most significant change is the assignment operator. Instead of `variable = value`, Sail uses `value > variable`. This allows for a natural left-to-right flow mimicking handwriting, for example: `a + b > a`. 
 It's time to break up from Assembly time where operator was on the left  and operands on the right: `MOV R1, R2`
 
 But in conditionals symbol `>`  'greater than' stays the same
@@ -37,7 +39,7 @@ But in conditionals symbol `>`  'greater than' stays the same
 
 ### Data Types & Operators
 
-Sail One supports standard data types:
+Sail supports standard data types:
 
 * `int`: integer
 * `float`: float decimal
@@ -49,7 +51,7 @@ It also supports standard arithmetic operators: `+`, `-`, `*`, `/`, and `%` (mod
 
 ### Variable Declaration
 
-You can declare a variable with or without an initial Sail Onee
+You can declare a variable with or without an initial value
 
 * **Declaration only:** `int i`
 * **Declaration with initialization:** `int i(0)` (i becomes 0)   , `float(3.14)` , `char c("a")`   , `bool l(true)`   , `string s("abcde")` .
@@ -59,13 +61,13 @@ You can declare a variable with or without an initial Sail Onee
 
 ## 2\. Program Structure \& Functions
 
-Sail One programs are organized into modules and functions.
+Sail programs are organized into modules and functions.
 
 ### Modules
 
 A program is defined within a `module|` block.
 
-```Sail One
+```Sail
 module| Euclidean 		// module itself
     ...
 |module
@@ -87,9 +89,9 @@ The entry point for your program is the `main` function.
 
 ### Example 1: `Euclidean` Program
 
-This full example demonstrates a simple module, function declaration, and Sail One's powerful I/O syntax.
+This full example demonstrates a simple module, function declaration, and Sail's powerful I/O syntax.
 
-```Sail One
+```Sail
 module| Euclidean 		// module itself
 
     fun| int a int b > Euclid > int  // function with type int
@@ -103,7 +105,7 @@ module| Euclidean 		// module itself
     	|when
 	|repeat
 
-	back| a |back     //this return of Sail Onee by function, not a vector
+	back| a |back     //this return of value by function, not a vector
 
     |fun
 
@@ -127,7 +129,7 @@ Notice the line: `in > a  b > Euclid > out`. This single line seamlessly:
 1. Takes input (`in`)
 2. Assigns it to variables `a` and `b`
 3. Passes `a` and `b` to the `Euclid` function
-4. Takes the return Sail Onee from `Euclid`
+4. Takes the return value from `Euclid`
 5. Sends that result to output (`out`)
 
 Here, in control flow of program: input, function call and output are seamed together in one transparent fluid motion, allowing coding in the direction from left to right , like in regular handwriting
@@ -136,13 +138,13 @@ Here, in control flow of program: input, function call and output are seamed tog
 
 ## 3\. Control Flow & Vectors
 
-Sail One provides standard control flow mechanisms and vector support.
+Sail provides standard control flow mechanisms and vector support.
 
 ### Conditional: `when|` / `other|`
 
 The `Euclidean` example shows a simple `when|` / `other|` block.
 
-```Sail One
+```Sail
 when| a > b
         a - b > a
     other|
@@ -155,7 +157,7 @@ when| a > b
 
 The `Euclidean` example also uses a `repeat|` loop.
 
-```Sail One
+```Sail
 repeat| b!= 0
     ...
 |repeat
@@ -172,7 +174,7 @@ repeat| b!= 0
 
 ### Loop: `iterate|`
 
-Sail One has a specific syntax for `iterate|` loops .
+Sail has a specific syntax for `iterate|` loops .
 
 * **Syntax:** `iterate|int i(0)++ <n`
 * **Explanation:**
@@ -183,7 +185,7 @@ Sail One has a specific syntax for `iterate|` loops .
 
 Here is an example of a `iterate|` loop used to populate an vector:
 
-```Sail One
+```Sail
 iterate| int k(0)++ < n       // fill with true
     true > primes|k|
 |iterate
@@ -195,7 +197,7 @@ iterate| int k(0)++ < n       // fill with true
 
 The following program, `primes`, uses vectors and loops to implement the Sieve of Eratosthenes algorithm.
 
-```Sail One
+```Sail
 module| primes 
 
         fun| int n > Eratosthenes > int       // function declaration
@@ -267,7 +269,7 @@ This example demonstrates vector manipulation (e.g., `false > primes|first|`), n
 
 ## 5\. Intermodular
 
-Sail One modules are connected through Intermodulars.
+Sail modules are connected through Intermodulars.
 
 ### Intermodular
 
@@ -277,7 +279,7 @@ Every module can be connected to other modules through intermodulars. Intermodul
 
 This example demonstrates flexibility and interconnection of module using mentioned before `Euclidian` algorithm
 
-```Sail One
+```Sail
 
 intermodular|
 
@@ -302,7 +304,7 @@ module| Euclidean
 
 ```
 
-In the beginning intermodular gives module access to standard I/O and then access to functions of another module. Also declaration of function that can be used by another module. Notice that source code extension of Sail One modules is `.sln`
+In the beginning intermodular gives module access to standard I/O and then access to functions of another module. Also declaration of function that can be used by another module. Notice that source code extension of Sail modules is `.sl`
 
 \---
 
@@ -318,7 +320,7 @@ In the beginning intermodular gives module access to standard I/O and then acces
 
 ### Example: writing and reading text file
 
-```Sail One
+```Sail
 
 file f("Readme.md" txt wr+)  //creating text file
 string s //srtring for reading and writing
@@ -344,9 +346,9 @@ f.close
 
 Compilation-Time Type Polymorphism: Uses explicit compile-time variable and operator binding (e.g., &T and &Op parameters) to handle generics via procedural specialization rather than complex template instantiation rules
 
-Sail One replaces preprocessors and templates with `comp| ... |comp` blocks, evaluating standard code at build time
+Sail replaces preprocessors and templates with `comp| ... |comp` blocks, evaluating standard code at build time
 
-```Sail One
+```Sail
 
 module| generics
 
@@ -386,7 +388,7 @@ Here you can see usage of generics for **different types**: ` float ` and ` inte
 
 ## 8\. Object-Oriented Programming: Compilation-Time Classes
 
-* **Sail One** also supports classes, allowing for object-oriented design.
+* **Sail** also supports classes, allowing for object-oriented design.
 * **Classes** also can be declared and processed during Compilation-Time
 
 * **Declaration:** `class| ClassName ... |class`.
@@ -398,7 +400,7 @@ Here you can see usage of generics for **different types**: ` float ` and ` inte
 
 Here is the `Euclidean` algorithm refactored into a class.
 
-```Sail One
+```Sail
 module| Euclidean
 
  comp|               //class processed at Compilation-Time   
@@ -439,15 +441,15 @@ module| Euclidean
 |module
 ```
 
-Once again, the `main` function showcases Sail One's natural flow.  The line `in > N.a N.b > N.Euclid > out` reads input directly into the object's data members `N.a`, `N.b`, calls the object's member function `N.Euclid`, and prints the returned result.
+Once again, the `main` function showcases Sail's natural flow.  The line `in > N.a N.b > N.Euclid > out` reads input directly into the object's data members `N.a`, `N.b`, calls the object's member function `N.Euclid`, and prints the returned result.
 
 \---
 
 ## 9\. Concurrency
 
-**Sail One** achieves concurrency through **Multitex**:
+**Sail** achieves concurrency through **Multitex**:
 
-```Sail One
+```Sail
 
 Multitex tasks||       //vector of tasks
 
@@ -468,13 +470,13 @@ tasks|i++|.concurr      //running tasks concurrently
 
 ## 10\. Memory Management
 
-Sail One has built-in garbage collector
+Sail has built-in garbage collector
 
 \---
 
 ## Origins
 
-* **Sail One** language has its roots in **C++** and **Common Lisp** programming languages
+* **Sail** language has its roots in **C++** and **Common Lisp** programming languages
 * It has variable declaration ` int i ` from **C++** and blocks that are explicit and self-closing with pipes are from **Common Lisp** multi-line comments:
 
 ```Common Lisp
@@ -486,8 +488,8 @@ Sail One has built-in garbage collector
 
 ```
 
-* **Sail One** input/output:
-```Sail One
+* **Sail** input/output:
+```Sail
 in > a b > Euclid > out
 ```
 
