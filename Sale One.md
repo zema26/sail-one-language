@@ -153,6 +153,25 @@ when| a > b
 |when
 ```
 
+### Neuro-Symbolic Branching
+
+Standard symbolic logic (`when| / other|`) requires absolute booleans. 
+An AI-optimized language benefits from heuristic evaluation operators that handle floating-point probabilities natively, allowing the language to compile generative behaviors.
+ * Syntax: `infer| / fall|`
+ * Fuzzy Operator (`~`): Evaluates proximity or confidence thresholds.
+
+```Sail 
+float confidence(0.85)
+
+infer| confidence ~ 0.90
+    // Executes if the confidence tensor meets the acceptable threshold
+    "High Probability" > out
+fall|
+    // Acts as a fallback for sub-threshold evaluations
+    "Recalculating" > out
+|infer
+```
+
 ### Loop: `repeat|`
 
 The `Euclidean` example also uses a `repeat|` loop.
@@ -164,6 +183,14 @@ repeat| b!= 0
 ```
 
 ### Vectors
+
+### Multidimensional Spatial Primitives
+
+AI processing environments rely on high-dimensional vectors rather than linear arrays. While the `| |` vector brackets are distinct, they should natively support tensor shapes to handle multi-layered data arrays without requiring nested loops.
+ * **Tensor** Declaration: `type name|rank, shape...|`
+ * 1D Vector (Original):`int primes|n|`
+ * 2D Matrix: `float weights|2, 64, 64|` (Declares a rank-2 tensor, 64x64)
+ * Broadcast Assignment: `0.0 > weights|*|` (Fills all elements simultaneously, eliminating the need for iterate| loops for simple population tasks).
 
 * We use vectors instead of arrays because they are more efficient
 * Notice | | brackets instead of [ ]
