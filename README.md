@@ -105,7 +105,7 @@ module| Euclidean 		// module itself
     	|when
 	|repeat
 
-	back| a |back     //this return of value by function, not a vector
+	a > |back|     //this return of value by function, not a vector
 
     |fun
 
@@ -170,6 +170,82 @@ fall|
     // Acts as a fallback for sub-threshold evaluations
     "Recalculating" > out
 |infer
+```
+
+Here is a 50-line implementation of an LLM token decoding pipeline in Sail, utilizing `infer|` and `fall|` to apply neuro-symbolic branching based on the confidence tensor of the generated token.
+
+* Escalation Operator (`^>`): Triggers a HALT_AND_ESCALATE state. If a task fails or yields a veto, the pipeline routes the global state output upward to a human arbiter or superior cognitive tier rather than crashing.
+
+```Sail
+module| LLM_Decoder
+
+    // Tensors for neural weights and token vocabulary
+    float model_weights|2, 4096, 4096|
+    string vocab|100000|
+
+    // Simulated neural feedforward calculation
+    fun| float ctx|1, 4096| >  Compute_Logits > float|1, 100000|
+        float logits|1, 100000|
+        // Tensor matrix multiplication 
+        ctx * model_weights|0| > logits
+        logits > |back|
+    |fun
+
+    // Simulated Softmax to extract probability distribution
+    fun| float logits|1, 100000| >  Softmax > float|1, 100000|
+        float probs|1, 100000|
+        logits.exp / logits.exp.sum > probs 
+        probs > |back|
+    |fun
+
+    // Neuro-symbolic token selection with threshold branching
+    fun| float context_vector|1, 4096| >  Decode_Token > string
+        float token_probs|1, 100000|
+        float max_conf(0.0)
+        int best_id(0)
+        string selected("")
+
+        // Fluid left-to-right neural pipeline
+        context_vector > Compute_Logits > Softmax > token_probs
+
+        // Extract maximum probability (argmax)
+        token_probs.max > max_conf
+        token_probs.argmax > best_id
+        vocab|best_id| > selected
+
+        // Neuro-Symbolic Branching 
+        infer| max_conf ~ 0.85
+            // High confidence threshold met: stream token directly
+            selected > |back|
+            
+        fall| 
+            // Confidence failed threshold: trigger systemic safety
+            // Invoke global TEMPORAL_LOCK to freeze inference state
+            "HALT_AND_ESCALATE" > out
+            "TEMPORAL_LOCK" ^> selected
+            
+            // Route to reasoning arbiter instead of hallucinating
+            selected > |back|
+        |infer
+    |fun
+
+    // Main execution entry point
+    fun| string args|| >  main > int
+        float current_ctx|1, 4096|
+        string next_token("")
+
+        // Broadcast assignment to initialize tensor
+        0.5 > current_ctx|*| 
+        
+        // Execute the decoder step
+        current_ctx > Decode_Token > next_token
+        
+        "Output: " + next_token > out
+        0 > |back|
+    |fun
+
+|module
+
 ```
 
 ### Loop: `repeat|`
@@ -382,7 +458,7 @@ module| generics
 comp|                                                  // compilation-time executing
     fun| &T a &Op &T b > Result > &T       // T - type Op - operator
 
-         back| a Op b |back       // this is function return 
+         a Op b > |back|       // this is function return 
 
     |fun
 |comp
@@ -447,7 +523,7 @@ module| Euclidean
                 |when
             |repeat
 
-            back| a |back
+            a > |back|
 
         |fun
     |class
