@@ -386,8 +386,8 @@ This example demonstrates flexibility and interconnection of module using mentio
 
 intermodular|
 
-   link| in2out.sln |link  //using standard input and output
-   link| module2.sln |link  //connecting to another module
+   link| in2out.sail |link  //using standard input and output
+   link| module2.sail |link  //connecting to another module
 
     fun| int a int b > Euclid > int |fun  //function that can be used by another modules
 
@@ -407,7 +407,7 @@ module| Euclidean
 
 ```
 
-In the beginning intermodular gives module access to standard I/O and then access to functions of another module. Also declaration of function that can be used by another module. Notice that source code extension of Sail modules is `.sl`
+In the beginning intermodular gives module access to standard I/O and then access to functions of another module. Also declaration of function that can be used by another module. Notice that source code extension of Sail modules is `.sail`
 
 \---
 
