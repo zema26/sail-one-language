@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "Sail Compiler"
+description = "Dark-themed Sail language editor and Rust/LLVM compiler playground with examples, diagnostics, LLVM IR, and sandboxed WebAssembly execution."
+version = "1.0.0"
+id = "artifacts/sail-playground"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 20271
+
+[services.development]
+run = "pnpm --filter @workspace/sail-playground run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/sail-playground", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/sail-playground/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "20271"
+BASE_PATH = "/"

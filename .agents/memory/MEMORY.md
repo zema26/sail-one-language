@@ -1,0 +1,5 @@
+- [LLVM cross-target drivers](llvm-cross-target-drivers.md) — Nix native Clang wrappers and WebAssembly builds require different driver selection.
+- [Spatial primitive interpretation](spatial-primitives.md) — the supplied tensor extension defines shapes and scalar fills, not general tensor algebra.
+- [Compiler feature visibility](feature-visibility.md) — unchanged editor content and version labels can make a working compiler upgrade look stale.
+- [Neuro-symbolic interpretation](neuro-symbolic-interpretation.md) — resolve the proposal's undefined tolerance and arbiter behavior explicitly, without implying full neural inference.
+- [Tensor algebra contracts](tensor-algebra-contracts.md) — follow the proposal's linear-algebra multiplication convention; keep model scale distinct from primitive support.

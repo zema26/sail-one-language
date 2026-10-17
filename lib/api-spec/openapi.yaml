@@ -1,0 +1,136 @@
+openapi: 3.1.0
+info:
+  # Do not change the title, if the title changes, the import paths will be broken
+  title: Api
+  version: 0.1.0
+  description: API specification
+servers:
+  - url: /api
+    description: Base API path
+tags:
+  - name: health
+    description: Health operations
+paths:
+  /sail/status:
+    get:
+      operationId: getCompilerStatus
+      responses:
+        "200":
+          description: Compiler capabilities and toolchain
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CompilerStatus"
+  /sail/examples:
+    get:
+      operationId: getExamples
+      responses:
+        "200":
+          description: Runnable Sail programs
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/SailExample"
+  /sail/reference:
+    get:
+      operationId: getLanguageReference
+      responses:
+        "200":
+          description: Language reference and implementation notes
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LanguageReference"
+  /sail/compile:
+    post:
+      operationId: compileSail
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CompilationInput"
+      responses:
+        "200":
+          description: Compilation result including WebAssembly on success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CompilationResult"
+  /healthz:
+    get:
+      operationId: healthCheck
+      tags: [health]
+      summary: Health check
+      description: Returns server health status
+      responses:
+        "200":
+          description: Healthy
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HealthStatus"
+components:
+  schemas:
+    CompilationInput:
+      type: object
+      required: [source, optimization]
+      properties:
+        source: { type: string, minLength: 1, maxLength: 65536 }
+        optimization: { type: string, enum: ["0", "1", "2"] }
+    Diagnostic:
+      type: object
+      required: [severity, message, line, column]
+      properties:
+        severity: { type: string, enum: [error, warning, info] }
+        message: { type: string }
+        line: { type: integer }
+        column: { type: integer }
+    CompilationResult:
+      type: object
+      required: [success, diagnostics, llvmIr, wasmBase64, durationMs, compilerVersion]
+      properties:
+        success: { type: boolean }
+        diagnostics:
+          type: array
+          items: { $ref: "#/components/schemas/Diagnostic" }
+        llvmIr: { type: string }
+        wasmBase64: { type: string }
+        durationMs: { type: number }
+        compilerVersion: { type: string }
+    SailExample:
+      type: object
+      required: [id, title, description, source, stdin, category]
+      properties:
+        id: { type: string }
+        title: { type: string }
+        description: { type: string }
+        source: { type: string }
+        stdin: { type: string }
+        category: { type: string }
+    CompilerStatus:
+      type: object
+      required: [version, ready, backend, target, features, limitations]
+      properties:
+        version: { type: string }
+        ready: { type: boolean }
+        backend: { type: string }
+        target: { type: string }
+        features: { type: array, items: { type: string } }
+        limitations: { type: array, items: { type: string } }
+    LanguageReference:
+      type: object
+      required: [markdown, notes]
+      properties:
+        markdown: { type: string }
+        notes: { type: string }
+    HealthStatus:
+      type: object
+      properties:
+        status:
+          type: string
+      required:
+        - status
+

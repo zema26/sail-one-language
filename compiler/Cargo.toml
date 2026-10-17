@@ -1,0 +1,17 @@
+[package]
+name = "sailc"
+version = "0.1.1"
+edition = "2021"
+description = "Sail language frontend and LLVM IR compiler"
+license = "MIT"
+
+[lib]
+name = "sailc"
+path = "src/lib.rs"
+
+[[bin]]
+name = "sailc"
+path = "src/main.rs"
+
+[profile.release]
+opt-level = 2

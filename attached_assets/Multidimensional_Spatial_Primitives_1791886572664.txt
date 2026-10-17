@@ -1,0 +1,6 @@
+Multidimensional Spatial Primitives
+AI processing environments rely on high-dimensional vectors rather than linear arrays. While the | | vector brackets in "Sale One.md" are distinct, they should natively support tensor shapes to handle multi-layered data arrays without requiring nested loops.
+ * Tensor Declaration: type name|rank, shape...|
+ * 1D Vector (Original): int primes|n|
+ * 2D Matrix: float weights|2, 64, 64| (Declares a rank-2 tensor, 64x64)
+ * Broadcast Assignment: 0.0 > weights|*| (Fills all elements simultaneously, eliminating the need for iterate| loops for simple population tasks).

@@ -1,5 +1,18 @@
 # Sail Language 
 
+## Current compiler and web playground
+
+The complete Rust/LLVM compiler and browser playground are included in this repository.
+
+- [Build, run, and Ubuntu instructions](compiler/README.md)
+- [Current compiler source](compiler/src/) and [runtime](compiler/runtime/)
+- [Web playground](artifacts/sail-playground/) and [compilation API](artifacts/api-server/)
+- [Runnable Sail examples](compiler/examples/) and [language support documentation](compiler/docs/implementation.md)
+- [ClairII language features and limits](compiler/docs/clairii.md)
+
+The maintained compiler implementation is in `compiler/`. Root-level Rust/C files are preserved earlier copies. The original language manual follows below.
+
+
 Completely new OOP language with new **classes** and style **elegance**
 
 Welcome to the description of the **Sail programming language**. This manual will walk you through Sail's unique syntax, program structure, and features, using enclosed examples
