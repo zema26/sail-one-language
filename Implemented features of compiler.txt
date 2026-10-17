@@ -1,0 +1,33 @@
+Implemented
+
+    Rust lexer, parser, semantic checks and direct LLVM IR generation
+
+    int (64-bit), float (64-bit), bool, char, string
+
+    Left-to-right assignment, input, function and output pipelines
+
+    when/other, repeat, iterate, break, continue, back
+
+    Bound-checked vectors, vector initialization and string operations
+
+    Ranked multidimensional tensors, checked coordinates and scalar broadcast fills
+
+    Shaped tensor parameters and returns, checked dimensions, leading-axis slices
+
+    Numeric tensor/scalar arithmetic, vector/matrix multiplication, exp, sum, max, argmax
+
+    Module-level scalar/vector/tensor data, shared mutation and checked initialization
+
+    ClairII outer products (.cross), parenthesized calls, namespaces and explicit tensor policies
+
+    Typed pipeline destinations and string.append with checked string rebinding
+
+    Neuro-Symbolic Branching: infer/fall, inclusive fuzzy thresholds (~), controlled escalation (^>)
+
+    Classes, fields, object instances and member functions
+
+    Compile-time numeric &T / &Op function specialization
+
+    Text-file I/O (virtual browser filesystem or native Linux files)
+
+    CLI module linking, LLVM IR, native executables, WebAssembly
